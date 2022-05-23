@@ -32,6 +32,8 @@ insert into produtos(nome,quantidade,valor)
 value('gta5','311',250);
 insert into produtos(nome,quantidade,valor)
 value('callofdutty','124',365);
+insert into produtos(nome,quantidade,valor)
+value('Sonic','56',365);
 
 select * from produtos;
 -- selecão de um registro (constatos) específico
