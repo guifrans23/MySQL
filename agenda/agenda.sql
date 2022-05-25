@@ -117,11 +117,11 @@ from contatos order by nome;
 
 
 
---  crud update 
+--  crud update (atualizar usuario)
 update contatos set email='bill@outlook'where id='8';
 update contatos set nome='josé'where id='8';
 update contatos set nome='robson da silva',fone='92222-2222',email='vaamonde@gamail.com'where id=30;
 
--- crud delete
+-- crud delete(usuario)
 
 delete from contatos where id=18;

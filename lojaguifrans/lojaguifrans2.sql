@@ -96,6 +96,96 @@ describe produtos;
 insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
 value
 ('1234567890','playstation4','console playstion-4','sony',20240523,2000,1000,'UN','prateleira 2',2550.75,1000,1.50);
+--
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('1234907843','xbox 360','console xbox360-microsoft','microsoft',29052022,500,100,'UN','prateleira 9',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('1234657757','nitendo 3Ds','console nitendo 3Ds-Nitendo','Nitendo',29052022,500,100,'UN','prateleira 10',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('1543153451','playstation vita ','console playstation vita -playstation','playstation',29052022,500,100,'UN','prateleira 8',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('2474224577','','console nitendo swith -nitendo','nitendo',29052022,500,100,'UN','prateleira 8',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('2134425116','gift card playstation','cartão presente playstation','sony',29052022,500,100,'UN','prateleira 3',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('1341521523','gift card xbox gamepass','cartão presente xbox gamepass','microsoft',29052022,500,100,'UN','prateleira 4',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('0875656565','gift card xbox','cartão presente xbox pass ultimate','micrisoft',29052022,500,100,'UN','prateleira 5',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('3468753599','gift card xbox','cartão presente xbox live gold','microsoft',29052022,500,100,'UN','prateleira 6',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('1344561545','gift card steam','cartão presente stema','steam',29052022,500,100,'UN','prateleira 7',2550.75,1000,1.50);
+insert into produtos(barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+value
+('1243667517','gift card epic games','cartão presente epic game','epic games',29052022,500,100,'UN','prateleira 8',2550.75,1000,1.50);
+
+-- relatorio de reposição de estoque 1
+select* from produtos where estoque < estoquemin;
+
+-- relatorio de reposição de estoque 2
+-- date format() função usada para formatar a data
+-- '%d/%m/%y dd/mm/aaaa | '%d/%m/%y dd/yy/aa
+ select codigo as codigo,produto,
+ date_format(dataval,'%d/%m/%y') as data_validade,
+ estoque,estoquemin as estoque_minimo
+ from produtos where estoque < estoquemin;
+
+
+
+-- inventario do etoque (patrimonio)
+-- calculacula o (patrimonio)
+select sum(estoque*custo) as total from produtos;
+
+-- ("SUM") função de soma no banco de dados
 
 select*from produtos;
 
+-- relatório de vaildade  de produtos 1 
+ select codigo as codigo,produto,
+ date_format(dataval,'%d/%m/%y') as data_validade
+ from produtos;
+ 
+-- relatório de vaildade  de produtos 2
+-- datediff() calcular a diferenca em dias 
+-- curdate()obtem a data atual  
+select codigo as codigo,produto,
+ date_format(dataval,'%d/%m/%y') as data_validade,
+ datediff(dataval,curdate()) as  dias_restatntes
+ from produtos;
+ 
+ create table clientes(
+ idcli int primary key auto_increment,
+ nome varchar(255) not null,
+ fone varchar(255) not null,
+ cpf varchar(255) unique,
+ email varchar(255),
+ marketing varchar(255) not null,
+ cep varchar(255),
+ endereco varchar(255),
+ numero varchar(255),
+ complemento varchar(255),
+ bairro varchar(255),
+ cidade varchar(255),
+ uf char(2)
+ );
+ 
+ describe clientes;
+ 
+ -- desafio 
+ alter table clientes add column nacimento varchar(255) after nome;
+ alter table produtos modify column barcode varchar(255) unique;
+ 
+ insert into contatos(nome,fone,cpf,email, marketing,cep,endereco,numero,complemento,bairro,cidade,uf)
+value ('nome','fone',cpf,'email','marketing',cep,endereco,numero,complemento,bairro,cidade,uf);
+
+ 
+ 

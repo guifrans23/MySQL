@@ -1,0 +1,30 @@
+Atividade de avaliação:
+
+1) Criar 10 registros(insert) na tabela de produtos✅
+   3 registros com data de validade de produto vencida✅
+   2 registros com estoque baixo (menor que o valor mínimo)✅
+
+2) Na tabela de produtos alterar o campo barcode adicionando UNIQUE
+   (se necessário mudar os registros de código de barras)✅
+
+3) Adicionar o campo nascimento na tabela de clientes✅
+
+4) Praticar o CRUD na tabela de clientes
+   - inserir 6 clientes
+   - alterar o telefone de algum cliente
+   - excluir um cliente
+
+5) Relatórios de clientes personalizados
+   -- Contatos (nome, fone e e-mail)
+   -- Aniversariantes (nome e data de nascimento)
+   -- E-mail marqueting dos clientes que permitirem só email
+
+6) Sincronizar as alterações com o GitHub
+   
+ 
+
+
+
+
+
+
