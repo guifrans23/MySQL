@@ -23,8 +23,8 @@ use guifrans;
 -- Primary key (transforma o campo em chave primaria)
 -- auto_increment (numero automatico)
 -- a virgula no final do codigo significa que a um novo campo
--- varcha(255) --> tipo de dados string(com variação)
--- cha(255)tipo de string (sem variação)
+-- varcha(255) --> tipo de dados string(com variação) naõ tem especificação em suas variaveis
+-- cha(255)tipo de string (sem variação) uf por exemplo que utiliza caracter limitados e especificos
 -- (255) máximo de caracteres 
 -- not null (obrigatorio preenchimento)
 

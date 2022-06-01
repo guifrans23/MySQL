@@ -74,6 +74,38 @@ value('guifrans','guifrans',md5('12345'),'user');
 select*from usuarios;
 select* from usuarios where login='admin' and senha=md5('admin');
 
+-- criação da tabela  fornecedores
+ 
+ create table fornecedores(
+idfor int primary key auto_increment,
+cnpj varchar(255)not null unique,
+ie varchar(255)unique,
+im varchar(255)unique,
+razao varchar(255) not null , 
+fantasia varchar(255)not null,
+site varchar(255),
+fone varchar(255) not null,
+contato varchar(255),
+email varchar(255),   
+cep varchar(255) not null,
+endereco varchar(255) not null,
+numero varchar(255)not null,
+complemento varchar(255), 
+bairro varchar(255)not null,
+cidade varchar(255) not null,
+uf char(2)not null,
+obs varchar(255)
+ );
+ insert into fornecedores(cnpj,ie,im,razao,fantasia,fone,cep,endereco,numero,bairro,cidade,uf)
+value ('47.51-2-01','São Paulo','Sp','fornecer games','Uzgames',' (11) 2941-8100',03306-010,
+'Shopping Metrô Tatuapé','91 - 185', 'tatuape','São Paulo','sp');
+select* from fornecedores;
+ describe fornecedores;
+ drop table fornecedores;
+
+
+-- tabela de  produtos 
+
 create table produtos(
 codigo int primary key auto_increment,
 barcode varchar(255),
@@ -88,8 +120,14 @@ unidade varchar(255) not null,
 localizacao varchar(255),
 custo decimal(10,2),
 lucro decimal(10,2),
-venda decimal(10,2)
+venda decimal(10,2),
+idfor int not null,
+foreign key (idfor) references fornecedores(idfor)
 );
+insert into produtos (produto,descricao,fabricante)
+value ('GTA5','jogo gta GTA5','Uzgames');
+insert into produtos (produto,descricao,fabricante)
+value ('FiFa','Jogo De Futebol','Uzgames');
 drop table produtos;
 describe produtos;
 
@@ -187,5 +225,46 @@ select codigo as codigo,produto,
  insert into contatos(nome,fone,cpf,email, marketing,cep,endereco,numero,complemento,bairro,cidade,uf)
 value ('nome','fone',cpf,'email','marketing',cep,endereco,numero,complemento,bairro,cidade,uf);
 
+select * from clientes;
+insert into clientes (nome,fone,marketing)
+value ('guifrans','95101-4339','nao');
+insert into clientes (nome,fone,marketing)
+value ('emanoel','92345-3462','sim');
+
+-- tabela de pedidos 01/06/2022
+
+-- foreign key(FK)Chave estrangeira que cria o relacionamento
+-- do tipo 1-N com a tabela clientes
+-- FK(pedido)..............PK(clientes)
+-- Observação: usar o mesmo nome e tipo de dados nas chaves(PK e FK)
+create table pedidos(
+pedido int primary key auto_increment,
+dataped timestamp default current_timestamp,
+total decimal(10,2),
+idcli int not null,
+foreign key(idcli) references clientes(idcli)
+);
+
+
+--  Abertura de pedido
+insert into pedidos(idcli)value(1);
+insert into pedidos(idcli)value(2);
+ -- verificar pedidos
+ select*from pedidos where pedidos;
+ -- verificar pedidos junto com o nome do cliente
+ -- inner join (unir informações de 2 ou mais tabelas)
+ -- IMPORTANTE Indicar As Chaves FK e Nk
+ select* from pedidos inner join clientes
+ on pedidos.idcli = clientes.idcli;
+ 
+ -- verificar pedidos junto com o nome do cliente (Relatorio Simplificado)
+ -- %H:%i exibir tambem o horario formatado 
+ select 
+ pedidos.pedido,
+ date_format(pedidos.dataped, '%d/%m/%y -%h:%i') as data_ped,
+ clientes.nome as cliente,
+ clientes.fone
+ from pedidos inner join clientes
+ on pedidos.idcli = clientes.idcli;
  
  
